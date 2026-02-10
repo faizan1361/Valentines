@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at top, #1a001f, #000);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 900px;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #f0d7ff;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 35px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff0055, #ff4da6);
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,0,100,0.7);
+}
+
+.fade {
+    animation: fade 1.2s ease;
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 18px;
+    animation: float 6s linear forwards;
+    color: #ff4da6;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh) scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* Music Button */
+#music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+
+#surprise {
+    display: none;
+}
+
+</style>
+</head>
+<body>
+
+<button id="music-btn" onclick="toggleMusic()">🔊</button>
+
+<audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<section id="one">
+    <div class="container fade">
+        <h1>Hey My Love ❤️</h1>
+        <p>
+            I made this little website just for you...<br>
+            Because there’s something I feel every single day.
+        </p>
+        <button class="btn" onclick="startExperience()">Continue 💫</button>
+    </div>
+</section>
+
+<section id="two">
+    <div class="container fade">
+        <h2>I Miss You 🥺</h2>
+        <p>
+            I miss you more than words can ever express.<br>
+            In my silence, in my thoughts, in my prayers — it's always you.<br><br>
+            Distance has only made my love stronger.<br>
+            Every heartbeat whispers your name.<br><br>
+            You are not just someone I love...<br>
+            You are someone I *need*.
+        </p>
+        <button class="btn" onclick="scrollToSection('three')">Next ❤️</button>
+    </div>
+</section>
+
+<section id="three">
+    <div class="container fade">
+        <h2>My Forever 💞</h2>
+        <p>
+            Before you, love was just a word.<br>
+            After you, love became my life.<br><br>
+            Your smile is my peace.<br>
+            Your voice is my comfort.<br>
+            Your presence is my home.<br><br>
+            No matter how far we are,<br>
+            my heart always finds its way back to you.
+        </p>
+        <button class="btn" onclick="showSurprise()">Click For A Surprise 💝</button>
+    </div>
+</section>
+
+<section id="surprise">
+    <div class="container fade">
+        <h2>One Question... 💍</h2>
+        <p>
+            Will you be my Valentine —<br>
+            not just this year,<br>
+            but for every year of our lives? ❤️
+        </p>
+        <p style="margin-top:25px; font-size:1.3rem;">
+            I miss you. I love you. Always.
+        </p>
+        <p style="margin-top:25px;">
+            — Faizan ❤️
+        </p>
+    </div>
+</section>
+
+<script>
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("music-btn");
+
+function startExperience() {
+    music.play();
+    scrollToSection('two');
+}
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+        btn.innerHTML = "🔊";
+    } else {
+        music.pause();
+        btn.innerHTML = "🔇";
+    }
+}
+
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+function showSurprise() {
+    document.getElementById("surprise").style.display = "flex";
+    scrollToSection('surprise');
+}
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 300);
+</script>
+
+</body>
+</html>
